@@ -105,12 +105,26 @@ These Beats allow us to collect the following information from each machine:
 - Metricbeat is a lightweight shipper that you can install on your servers to periodically collect metrics from the operating system and from services running on the server.
 
 ### Setup ssh
-In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
-ssh-keygen (first time said yes when prompt)
+ssh-keygen in Git-Bash on local computer 
 cd into .ssh/id_rsa.pub(Your Public key) and copy and paste ssh key to Azure Jumpbox Password key
 ssh -i .ssh/id_rsa azadmin@168.62.167.112
 sudo apt install docker.io
-sudo docker pull cyberxsecurity/ubuntu:bionic
+sudo docker pull cyberxsecurity/ubuntu:bionic and cyberxsecurity/ansible
+docker run -ti cyberxsecurity/ansible:latest bash to launch a ansible container and connect to its command line.
+Do ssh-keygen, copy ssh Public key, and paste it to Azure Webservers Password key 
+
+### Update Ansible files
+Update the hosts file to include webserver IP's
+    [webservers]
+    #alpha.example.org
+    #beta.example.org
+    #192.168.1.100
+    #192.168.1.110
+    10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+    10.0.0.7 ansible_python_interpreter=/usr/bin/python3
+
+    Update ansible.cfg file
+    remote_user = azadmin
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
@@ -121,23 +135,15 @@ In order to use the playbook, you will need to have an Ansible control node alre
     ssh username@Jump-BoxPrivateIP
     sudo docker container list -a (to see what is running)
     Locate your ansible container name
-    sudo docker start (name of container)
-    sudo docker attach (name of container)
+    sudo docker start fervent_allen
+    sudo docker attach fervent_allen
     cd /etc/ansible
     Copy the install-elk.yml file to /etc/ansible.
-    Update the hosts file to include webserver IP's and ELKServer IP
-    [webservers]
-    #alpha.example.org
-    #beta.example.org
-    #192.168.1.100
-    #192.168.1.110
-    10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+    Update the hosts file to include ELKServer IP
     10.0.0.7 ansible_python_interpreter=/usr/bin/python3
 
     [elk]
     <ELK-server_Private_IP> ansible_python_interpreter=/usr/bin/python3
-    Update ansible.cfg file
-    remote_user = azadmin
     Run the playbook, and navigate to HTTP://20.98.74.199:5601 to check that the installation worked as expected.
     https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/kibana-home.jpg   
 
@@ -148,8 +154,8 @@ In order to use the playbook, you will need to have an Ansible control node alre
     ssh username@Jump-BoxPrivateIP
     sudo docker container list -a (to see what is running)
     Locate your ansible container name
-    sudo docker start (name of container)
-    sudo docker attach (name of container)
+    sudo docker start fervent_allen
+    sudo docker attach fervent_allen
     cd /etc/ansible
     Copy the install-filebeat.yml file to /etc/ansible.
     Copy the filebeat-config.yml in the /etc/ansible/files and Update the file(See below)
