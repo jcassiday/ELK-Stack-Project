@@ -103,12 +103,20 @@ These Beats allow us to collect the following information from each machine:
 
 - Metricbeat is a lightweight shipper that you can install on your servers to periodically collect metrics from the operating system and from services running on the server.
 
+### Setup ssh
+In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
+ssh-keygen (first time said yes when prompt)
+cd into .ssh/id_rsa.pub(Your Public key) and copy and paste ssh key to Azure Jumpbox Password key
+ssh -i .ssh/id_rsa azadmin@168.62.167.112
+sudo apt install docker.io
+sudo docker pull cyberxsecurity/ubuntu:bionic
+
 ### Using the Playbook
-In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned:
 
 ### For ELK Server
 
-    Open command prompt
+    Open command prompt in Git-Bash to establish ssh link to cloud enviroment
     ssh username@Jump-BoxPrivateIP
     sudo docker container list -a (to see what is running)
     Locate your ansible container name
@@ -122,14 +130,14 @@ In order to use the playbook, you will need to have an Ansible control node alre
     #beta.example.org
     #192.168.1.100
     #192.168.1.110
-    <Webserver_Private_IP> ansible_python_interpreter=/usr/bin/python3
-    <Webserver2_Private_IP> ansible_python_interpreter=/usr/bin/python3
+    10.0.0.6 ansible_python_interpreter=/usr/bin/python3
+    10.0.0.7 ansible_python_interpreter=/usr/bin/python3
 
     [elk]
     <ELK-server_Private_IP> ansible_python_interpreter=/usr/bin/python3
     Update ansible.cfg file
-    remote_user = <your username>**This username must match the remote_user in the install-elk, install-filebeat, and install-metricbeat playbooks**
-    Run the playbook, and navigate to HTTP://<ELKServer_Public_IP>:5601 to check that the installation worked as expected.
+    remote_user = azadmin
+    Run the playbook, and navigate to HTTP://20.98.74.199:5601 to check that the installation worked as expected.
     https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/kibana-home.jpg   
 
 
@@ -145,10 +153,10 @@ In order to use the playbook, you will need to have an Ansible control node alre
     Copy the install-filebeat.yml file to /etc/ansible.
     Copy the filebeat-config.yml in the /etc/ansible/files and Update the file(See below)
     **output.elasticsearch:**
-    hosts: ["<Your_ELK_Server_Private_IP>:9200"]
+    hosts: ["10.1.0.4:9200"]
     **setup.kibana:**
-    host: "<Your_ELK_Server_Private_IP>:5601"
-    Run the playbook, and navigate to HTTP://<ELKServer_Public_IP>:5601
+    host: "10.1.0.4:5601"
+    Run the playbook, and navigate to HTTP://20.98.74.199:5601
     Click Add Log Data.
     Choose System Logs.
     Click on the DEB tab under Getting Started.
@@ -160,7 +168,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 ### For Metricbeat
 
     Repeat the same steps you did for filebeat to install metricbeat.
-    Run the playbook, and navigate to HTTP://<ELKServer_Public_IP>:5601
+    Run the playbook, and navigate to HTTP://20.98.74.199:5601
     Click Add Metric Data.
     Choose Docker Metric.
     Click on the DEB tab under Getting Started.
