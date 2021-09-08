@@ -24,7 +24,7 @@ This document contains the following details:
 
 ### Description of the Topology
 
-The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application. The cloud enviroment has two web servers, load balancer, and jumpbox in the same resourse and security group. The web servers have an availability set with each other and no public IP because the load balancer will provide it. The load balancer has a backend pool with the web servers and a health probe. The Elk Stack will have its own zone and security group but have a peer-to-peer connection to the East zone.
+The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application. The cloud environment has two web servers, load balancer, and jump box in the same resource and security group. The web servers have an availability set with each other and no public IP because the load balancer will provide it. The load balancer has a backend pool with the web servers and a health probe. The Elk Stack will have its own zone and security group but have a peer-to-peer connection to the East zone.
 
 Load balancing ensures that the application will be highly available, in addition to restricting requests to the network.
 - What aspect of security do load balancers protect?
