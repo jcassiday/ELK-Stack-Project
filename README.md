@@ -6,8 +6,6 @@ The files in this repository were used to configure the network depicted below.
 
 https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/NetworkTopology.png
 
-A cloud enviroment with two web servers, load balancer, and jumpbox in the same resourse and security group. The web servers have with an availability set with each other and no public IP because the load balancer will provide it. The load balancer has a backend pool with the web servers and a health probe. The Elk Stack will have its own zone and security group but have a peer-to-peer connection to the East zone
-
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML playbook files may be used to install only certain pieces of it, such as Filebeat.
 
     install-elk.yml
@@ -26,7 +24,7 @@ This document contains the following details:
 
 ### Description of the Topology
 
-The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
+The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application. The cloud enviroment has two web servers, load balancer, and jumpbox in the same resourse and security group. The web servers have an availability set with each other and no public IP because the load balancer will provide it. The load balancer has a backend pool with the web servers and a health probe. The Elk Stack will have its own zone and security group but have a peer-to-peer connection to the East zone.
 
 Load balancing ensures that the application will be highly available, in addition to restricting requests to the network.
 - What aspect of security do load balancers protect?
@@ -43,7 +41,6 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 - What does Metricbeat record?
   Metricbeat collects machine metrics, such as uptime.
  
-
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
@@ -54,6 +51,8 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Web-2                | DVWA          | 10.0.0.6     | Linux (ubuntu 18.04)                  |
 | Red-Team-LoadB       | Load Balancer | 40.76.66.171 | Backend pool(Name: Red-Team-back-end) |
 | ELK-Stack            | ELK           | 10.1.0.4     | Linux (ubuntu 18.04)                  |
+
+
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
@@ -73,6 +72,7 @@ A summary of the access policies in place can be found in the table below.
 | Web-2                | No                  | Docker Container on Jump-Box-Provisioner |
 | Red-Team-LoadB       | No                  | None                                     |
 | ELK-Stack            | No                  | Docker Container on Jump-Box-Provisioner |
+
 
 ### Elk Configuration
 
@@ -132,14 +132,14 @@ In order to use the playbook, you will need to have an Ansible control node alre
 ### For ELK Server
 
     Open command prompt in Git-Bash to establish ssh link to cloud enviroment
-    ssh username@Jump-BoxPrivateIP
+    ssh -i .ssh/id_rsa azadmin@168.62.167.112
     sudo docker container list -a (to see what is running)
-    Locate your ansible container name
     sudo docker start fervent_allen
     sudo docker attach fervent_allen
     cd /etc/ansible
     Copy the install-elk.yml file to /etc/ansible.
     Update the hosts file to include ELKServer IP
+    
     10.0.0.7 ansible_python_interpreter=/usr/bin/python3
 
     [elk]
@@ -150,10 +150,9 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 ### For Filebeat
 
-    Open command prompt
-    ssh username@Jump-BoxPrivateIP
+    Open command prompt in Git-Bash to establish ssh link to cloud enviroment
+    ssh -i .ssh/id_rsa azadmin@168.62.167.112
     sudo docker container list -a (to see what is running)
-    Locate your ansible container name
     sudo docker start fervent_allen
     sudo docker attach fervent_allen
     cd /etc/ansible
