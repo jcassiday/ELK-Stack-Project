@@ -6,6 +6,8 @@ The files in this repository were used to configure the network depicted below.
 
 https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/NetworkTopology.png
 
+A cloud enviroment with two web servers, load balancer, and jumpbox in the same resourse and security group. The web servers have with an availability set with each other and no public IP because the load balancer will provide it. The load balancer has a backend pool with the web servers and a health probe. The Elk Stack will have its own zone and security group but have a peer-to-peer connection to the East zone
+
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML playbook files may be used to install only certain pieces of it, such as Filebeat.
 
     install-elk.yml
@@ -45,20 +47,19 @@ Integrating an ELK server allows users to easily monitor the vulnerable VMs for 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name                 | Function      | IP Address   | Operating System     |
-|----------------------|---------------|--------------|----------------------|
-| Jump-Box-Provisioner | Gateway       | 10.0.0.4     | Linux (ubuntu 18.04) |
-| Web-1                | DVWA          | 10.0.0.7     | Linux (ubuntu 18.04) |
-| Web-2                | DVWA          | 10.0.0.6     | Linux (ubuntu 18.04) |
-| Red-Team-LoadB       | Load Balancer | 40.76.66.171 |                      |
-| ELK-Stack            | ELK           | 10.1.0.4     | Linux (ubuntu 18.04) |
-
+| Name                 | Function      | IP Address   | Operating System                      |
+|----------------------|---------------|--------------|---------------------------------------|
+| Jump-Box-Provisioner | Gateway       | 10.0.0.4     | Linux (ubuntu 18.04)                  |
+| Web-1                | DVWA          | 10.0.0.7     | Linux (ubuntu 18.04)                  |
+| Web-2                | DVWA          | 10.0.0.6     | Linux (ubuntu 18.04)                  |
+| Red-Team-LoadB       | Load Balancer | 40.76.66.171 | Backend pool(Name: Red-Team-back-end) |
+| ELK-Stack            | ELK           | 10.1.0.4     | Linux (ubuntu 18.04)                  |
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the Jump box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- My Public IP Address: 69.245.98.184
+- My Public IP Address: Personal
 
 Machines within the network can only be accessed by SSH.
 - Jump box: 168.62.167.112
