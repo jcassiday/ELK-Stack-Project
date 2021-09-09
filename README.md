@@ -24,11 +24,7 @@ This document contains the following details:
 
 ### Description of the Topology
 
-<<<<<<< HEAD
-The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application. The cloud enviroment has two web servers, load balancer, and jumpbox in the same resourse and security group. The web servers have an availability set with each other and no public IP because the load balancer will provide it. The load balancer has a backend pool with the web servers and a health probe. The Elk Stack will have its own zone and security group but have a peer-to-peer connection to the East zone.
-=======
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application. The cloud environment has two web servers, load balancer, and jump box in the same resource and security group. The web servers have an availability set with each other and no public IP because the load balancer will provide it. The load balancer has a backend pool with the web servers and a health probe. The Elk Stack will have its own zone and security group but have a peer-to-peer connection to the East zone.
->>>>>>> 006b5d974ea78c6afc0aec1c5fdae1de757f5aa5
 
 Load balancing ensures that the application will be highly available, in addition to restricting requests to the network.
 - What aspect of security do load balancers protect?
@@ -109,16 +105,17 @@ These Beats allow us to collect the following information from each machine:
 - Metricbeat is a lightweight shipper that you can install on your servers to periodically collect metrics from the operating system and from services running on the server.
 
 ### Setup ssh
-ssh-keygen in Git-Bash on local computer 
-cd into .ssh/id_rsa.pub(Your Public key) and copy and paste ssh key to Azure Jumpbox Password key
-ssh -i .ssh/id_rsa azadmin@168.62.167.112
-sudo apt install docker.io
-sudo docker pull cyberxsecurity/ubuntu:bionic and cyberxsecurity/ansible
-docker run -ti cyberxsecurity/ansible:latest bash to launch a ansible container and connect to its command line.
-Do ssh-keygen, copy ssh Public key, and paste it to Azure Webservers Password key 
+    ssh-keygen in Git-Bash on local computer
+    cd into .ssh/id_rsa.pub(Your Public key) and copy and paste ssh key to Azure Jumpbox Password key
+    ssh -i .ssh/id_rsa azadmin@168.62.167.112
+    sudo apt install docker.io
+    sudo docker pull cyberxsecurity/ubuntu:bionic and cyberxsecurity/ansible
+    docker run -ti cyberxsecurity/ansible:latest bash to launch a ansible container and connect to its command line.
+    Do ssh-keygen, copy ssh Public key, and paste it to Azure Webservers Password key
 
 ### Update Ansible files
 Update the hosts file to include webserver IP's
+
     [webservers]
     #alpha.example.org
     #beta.example.org
