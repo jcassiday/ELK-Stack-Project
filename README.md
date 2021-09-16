@@ -4,7 +4,8 @@
 
 The files in this repository were used to configure the network depicted below.
 
-https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/NetworkTopology.png
+<a href="https://github.com/jcassiday/ELK-Stack-Project/"><img src="https://github.com/jcassiday/ELK-Stack-Project/blob/main/Diagrams/NetworkTopology.png" align="right" height="45%" width="45%" ></a>
+
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the YAML playbook files may be used to install only certain pieces of it, such as Filebeat.
 
