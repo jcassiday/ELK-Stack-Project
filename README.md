@@ -89,7 +89,7 @@ The playbook implements the following tasks:
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
-https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/docker-ps.jpg
+<a href="https://github.com/jcassiday/ELK-Stack-Project/"><img src="https://github.com/jcassiday/ELK-Stack-Project/blob/main/Diagrams/docker-ps.jpg" align="center"></a>
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
@@ -147,8 +147,8 @@ In order to use the playbook, you will need to have an Ansible control node alre
     [elk]
     <ELK-server_Private_IP> ansible_python_interpreter=/usr/bin/python3
     Run the playbook, and navigate to HTTP://20.98.74.199:5601 to check that the installation worked as expected.
-    https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/kibana-home.jpg   
 
+<a href="https://github.com/jcassiday/ELK-Stack-Project/"><img src="https://github.com/jcassiday/ELK-Stack-Project/blob/main/Diagrams/kibana-home.jpg" align="center" height="60%" width="60%" ></a>
 
 ### For Filebeat
 
@@ -170,8 +170,8 @@ In order to use the playbook, you will need to have an Ansible control node alre
     Click on the DEB tab under Getting Started.
     On the same page, scroll to Step 5: Module Status and click Check Data.
     Scroll to the bottom of the page and click Verify Incoming Data.
-    https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/confirm-filebeat.jpg
 
+<a href="https://github.com/jcassiday/ELK-Stack-Project/"><img src="https://github.com/jcassiday/ELK-Stack-Project/blob/main/Diagrams/confirm-filebeat.jpg" align="center" height="60%" width="60%" ></a>
 
 ### For Metricbeat
 
@@ -182,6 +182,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
     Click on the DEB tab under Getting Started.
     On the same page, scroll to Step 5: Module Status and click Check Data.
     Scroll to the bottom of the page and click Verify Incoming Data.
-    https://gt.bootcampcontent.com/jcassiday/elk-stack-project/-/blob/main/Diagrams/confirm-metricbeat.jpg
     
+<a href="https://github.com/jcassiday/ELK-Stack-Project/"><img src="https://github.com/jcassiday/ELK-Stack-Project/blob/main/Diagrams/confirm-metricbeat.jpg" align="center" height="60%" width="60%" ></a>
+
 You will need to ensure all files are properly placed before running the ansible-playbooks.
